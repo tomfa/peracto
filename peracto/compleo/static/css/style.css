@@ -1,0 +1,166 @@
+/* General */
+* {font-family: "Helvetica", sans-serif;}
+/*
+    body-bgcolor: #898C7C;;
+    goal-color: #7F6764;
+
+*/
+html {height: 100%;}
+body {
+    height: 100%;
+} 
+h1,h2 {
+    margin: 5px; 
+    font-size: 1.5em;
+    text-align: center; 
+    font-weight: normal; 
+    font-variant: small-caps;
+}
+h3 {
+    margin: 0px; 
+    font-size: 1.5em;
+    text-align: center; 
+    font-weight: normal; 
+    font-variant: small-caps;
+}
+#topic h1 {color: #DEDEDE;}
+#goal h2 {color: #DEDEDE;}
+#theme h2 {color: #929292;}
+#index {height: 100%;}
+#main {
+    float:left; 
+    background-color: #EEE; 
+    width: 100%; 
+    height: 100%;
+    border: 5px solid #FFF;
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+input[type=checkbox] + label
+{
+   background: url(../img/check_radio_sheet.png) left top no-repeat;
+   height: 18px;
+   width: 18px;
+   display:inline-block;
+   margin-bottom: -4px;
+   padding: 0 0 0 0px;
+   margin-right: 4px;
+}
+
+input[type=checkbox]:checked + label
+{
+    background: url(../img/check_radio_sheet.png) -19px top no-repeat;
+    height: 18px;
+    width: 18px;
+    margin-bottom: -4px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+    margin-right: 4px;
+    opacity: 0.5;
+}
+
+input[type=checkbox]:checked + label + p 
+{
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+input[type=checkbox] + label + p 
+{
+    text-decoration: none;
+    opacity: 1.0;
+}
+
+
+
+/* Special elements */
+#description {
+    text-align: center;  
+    margin: 10px;
+}
+#logo {
+    color: #333; 
+    font-weight: normal;
+}
+#logo:hover {
+    text-decoration: none; 
+    color: #444; 
+}
+#theme_textfield, #topic_textfield, #goal_textfield {
+    display:none;
+    width: 95%;
+    height: 2.7em;
+    padding-left: 5%;
+    background-color: #EEE;
+    border: none;
+}
+
+/* Colums */
+#topic, #theme, #goal {
+    float: left; 
+    width: 25%; 
+    overflow: hidden; 
+    height: 100%;
+}
+#theme {
+    
+}
+#goal {
+    width: 50%; 
+    display: none;  
+}
+
+/* Topics */
+.topic {
+    margin: 0;  
+    opacity: 0.6;
+    background-color: #A8A8A8; 
+    border-bottom: 1px dashed #000;
+}
+
+#index {
+    padding-top: 20px;
+}
+div.info { 
+    text-align: left;
+    display: none; 
+    padding-left: 15px; 
+} 
+
+/* Themes */
+.theme {
+    display: none;
+}
+
+/* Goals */
+.goal {
+
+    display: block;
+    text-align: left;
+    padding: 0 5%; 
+    line-height: 1.2em; 
+    color: #000;
+    opacity: 0.7; 
+    font-size: 0.9em; 
+    font-family: "Helvetica", sans-serif; 
+    display: none;
+}
+.goal p {
+    display: inline;
+}
+
+/* Individual styling */
+/* .topic1 { background-color: #E82C0C; }
+.topic2 { background-color: #FF530D; }
+.topic3 { background-color: #FF0000; }
+.topic4 { background-color: #E80C79; }
+.topic5 { background-color: #E82C0C; }
+.topic6 { background-color: #FF530D; }
+.topic7 { background-color: #FF0000; }
+.topic8 { background-color: #E80C79; } */
+
+
+

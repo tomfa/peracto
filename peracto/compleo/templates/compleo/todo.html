@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Peracto – What are you doing today?</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/indexstyle.css">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css">
+    
+    <script src="{{ STATIC_URL }}js/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}js/todo.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery-latest.js"></script>
+</head>
+
+<body>
+    <div id="index">
+    <div id="main" class="{{ list.pk }}">
+        <div id="topic">
+            <a href="./" id="logo" title="Peracto - a todo application developed by 
+                Tomas Albertsen"><h1>{{ list.title }}</h1></a>
+            <input type="textfield" id="topic_textfield"/>
+            {% for topic in topics %}
+            <div class="topic{{ topic.pk }} topic"><h3>{{ topic.title }}</h3>
+                <div class="info">{{ topic.description }}</div>
+            </div>
+            {% endfor %}
+            <p id="description"><strong>wasd</strong> – navigate<br /> <strong>n</strong> – new<br /><strong>r</strong> – remove<br />  <strong>F2/e</strong> – edit</p><br />
+        </div>
+        
+        <div id="theme">
+            <h2>&nbsp;</h2>
+            <input type="textfield" id="theme_textfield"/>
+            {% for topic in topics %}
+            <div class="topic{{ topic.pk }}">
+                {% for theme in topic.children %}
+                <div class="theme{{ theme.pk }} theme"><h3>{{ theme.title }}</h3></div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+        <div id="goal">
+            <h2>&nbsp;</h2>
+            <input type="textfield" id="goal_textfield"/>
+            {% for topic in topics %}
+            <div class="topic{{ topic.pk }}">
+                {% for theme in topic.children %}
+                <div class="theme{{ theme.pk }}">
+                    {% for goal in theme.children %}
+                    <div class="goal{{ goal.pk }} goal {% if goal.checked %}checked{% endif %}">
+                        <input type='checkbox' id="goal{{ goal.pk }}" {% if goal.checked %}checked{% endif %}/><label for="goal{{ goal.pk }}"></label><p>{{ goal.title }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+    

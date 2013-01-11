@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="css/indexstyle.css">
+    <script src="js/jquery-latest.js"></script>
+    <script type="text/javascript">
+        
+        $(document).ready(function(){
+            $('#searchfield').attr('value', '');
+            var infotext = true;
+            $('#searchfield').on('click', function (event){
+                if (infotext){
+                    $('#searchfield').attr('value', '');
+                    infotext = false;
+                }
+            })
+            $(document).on('keydown', function (event) {
+                $('#searchfield').focus();
+                // If infotext is still showing
+                if (infotext){
+                    $('#searchfield').attr('value', '');
+                    infotext = false;
+                }
+
+                // Enter-button
+                if (event.keyCode == 13){
+                    if ($('#searchfield').attr('value').length > 0)
+                        go_page();
+                    return;
+                }
+            });
+            $('span').on('mouseleave', function (event) {
+                $('#info').fadeOut();
+            });
+
+            $('#about').on('mouseenter', function (event) {
+                $('#info').stop(true, true);
+                $('#info').html('<p>Compleo is written with jQuery in a django framework by <a href="http://www.webutvikling.org">tomasalb</a>.</p><p>Compleo is a free-to-use todo-application focused on being simple to use, quick, and usable by keyboard only.</p> ');
+                $('#info').fadeIn();
+            });
+            $('#android').on('mouseenter', function (event) {
+                $('#info').stop(true, true);
+                $('#info').html('<p>An android version of Compleo is currently in development.</p>');
+                $('#info').fadeIn();
+            });
+            $('#use').on('mouseenter', function (event) {
+                $('#info').stop(true, true);
+                $('#info').html('<p>in the textfield above, write a name for your todo-list. if the name is currently in use, that list will show up. if not, you will be given a blank list.</p><p>a list consists of three columns, where the first and second are topic and subtopic. the last column is the actual goal column.</p></p>you navigate between the lists and items using &lt;W&gt;, &lt;A&gt;, &lt;S&gt;, &lt;D&gt; or your arrow keys.</p> <p>&lt;F2&gt; and &lt;E&gt; edits selected items, while &lt;N&gt; allows you to create new ones.</p><p>&lt;R&gt; removes the selected item.</p>');
+                $('#info').fadeIn();
+            });
+            $('#info').on('mouseenter', function (event) {
+                $('#info').stop(true, true);
+                $(this).show();
+            });
+             $('#info').on('mouseleave', function (event) {
+                $('#info').fadeOut();
+            });
+        });
+
+        var go_page = function() {
+            window.location.href = "./todo.html";
+            // TODO: When in prod
+            //window.location.href = "./" + $('#searchfield').attr('value');
+        };
+
+        var show_allowed_keys = function() {
+            $('#messagebox').stop(true, true);
+            $('#messagebox').fadeIn(100);
+            $('#messagebox').fadeOut(3000);
+        };
+    </script>
+</head>
+
+<body>
+    <div id="index">
+        <h1>Compleo</h1>
+        <input type="text" id="searchfield" value="Start typing a name for your todo-list..." maxlength="50"/>
+        <div id="footer"><span id="use">use</span> | <span id="android">android</span> | <span id="about">about</span> </div>
+        <div id="info"></div>
+        <div id="messagebox">Only letters and numbers are allowed.</div>
+        
+    </div>
+</body>
+</html>
+
+    
