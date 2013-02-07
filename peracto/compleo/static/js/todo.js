@@ -500,6 +500,7 @@ handle_key = function(e) {
             e.preventDefault(); 
         case 65: // a
         case 97: // A
+        case 72: // h
             go_left();
         break;
 
@@ -507,6 +508,7 @@ handle_key = function(e) {
             e.preventDefault(); 
         case 119: // w
         case 87: // W
+        case 75: // k
             go_up();
         break;
 
@@ -514,6 +516,7 @@ handle_key = function(e) {
             e.preventDefault(); 
         case 68: // D
         case 100: // d
+        case 76: // l
             go_right();
         break;
 
@@ -521,6 +524,7 @@ handle_key = function(e) {
             e.preventDefault(); 
         case 115: // s
         case 83: // S
+        case 74: // j
             go_down();
         break;   
 
