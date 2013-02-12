@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-#
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from compleo.models import PeractoList, Topic, Theme, Goal, RandomName
 from django.views.decorators.csrf import csrf_exempt
@@ -20,29 +20,29 @@ def result(request, title, message, pk):
     }
     return render(request, 'compleo/results.html', context)
 
+
 # When people go to www.webpage.com/listname
 # POST {listname: new_or_old_listname}
-def get_list(request, listname):
-    peractolist = PeractoList.objects.filter(title=listname)
-    if not (peractolist): 
-        # Vi lager ny, uten barn og returnerer
-        peractolist = PeractoList.objects.create(title=listname)
-        peractolist.save()
-        context = {
-            'list': peractolist # the list
-        }
-    else:
-        peractolist = peractolist[0]
-        topics = Topic.objects.filter(parentList = peractolist)
-        for topic in topics:
-            topic.children = Theme.objects.filter(parentTopic = topic)
-            for theme in topic.children:
-                theme.children = Goal.objects.filter(parentTheme = theme)
-        context = {
-            'list': peractolist, # the list
-            'topics': topics    
-        }
-    return render(request, 'compleo/todo.html', context)
+def get_list(request, list_name):
+    try:
+        peracto_list = PeractoList.objects.permitted_objects(user=request.user).get(title=list_name)
+    except (TypeError, PeractoList.DoesNotExist):
+        if PeractoList.objects.filter(title=list_name).count() == 0:
+            # Vi lager ny, uten barn og returnerer
+            peracto_list = PeractoList.objects.create(title=list_name)
+        else:
+            raise Http404
+
+    topics = Topic.objects.filter(parentList=peracto_list)
+    for topic in topics:
+        topic.children = Theme.objects.filter(parentTopic=topic)
+        for theme in topic.children:
+            theme.children = Goal.objects.filter(parentTheme=theme)
+
+    return render(request, 'compleo/todo.html', {
+        'list': peracto_list,
+        'topics': topics
+    })
 
 # INTERNAL FUNCTIONS
 # This could possibly be merged with the two functions below
