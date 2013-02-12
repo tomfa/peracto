@@ -1,8 +1,10 @@
 # -*- encoding: utf-8 -*-#
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
-from compleo.models import PeractoList, Topic, Theme, Goal, RandomName
 from django.views.decorators.csrf import csrf_exempt
+from compleo.models import PeractoList, Topic, Theme, Goal, RandomName
+from peracto.decorators import peracto_login_required
+
 
 # When people go to www.webpage.com | POST: none
 def index(request):
@@ -12,6 +14,8 @@ def index(request):
     }
     return render(request, 'compleo/index.html', context)
 
+
+@peracto_login_required
 def result(request, title, message, pk):
     context = {
         'title': title, # the list
@@ -23,6 +27,7 @@ def result(request, title, message, pk):
 
 # When people go to www.webpage.com/listname
 # POST {listname: new_or_old_listname}
+@peracto_login_required
 def get_list(request, list_name):
     try:
         peracto_list = PeractoList.objects.permitted_objects(user=request.user).get(title=list_name)
@@ -43,6 +48,7 @@ def get_list(request, list_name):
         'list': peracto_list,
         'topics': topics
     })
+
 
 # INTERNAL FUNCTIONS
 # This could possibly be merged with the two functions below
@@ -156,6 +162,7 @@ def check_goal(key, title, uncheck):
         goal.save()
 
 @csrf_exempt
+@peracto_login_required
 def rename(request):
     # type|this.pk|this.oldTitle|this.newTitle
     if request.method == 'POST':
@@ -176,6 +183,7 @@ def rename(request):
         return result(request, "You need to provide more stuff", "", "")
 
 @csrf_exempt
+@peracto_login_required
 def check(request):
     if request.method == 'POST':
         operations = request.POST['operations'].split(';')
@@ -194,6 +202,7 @@ def check(request):
         return result(request, "You need to provide more stuff", "", "")
 
 @csrf_exempt
+@peracto_login_required
 def add(request):
     # Type|parent.pk|parent.title|this.title
     if request.method == 'POST':
@@ -214,6 +223,7 @@ def add(request):
         return result(request, "You need to provide more stuff", "", "")
 
 @csrf_exempt
+@peracto_login_required
 def delete(request):
     # Type|this.pk|this.title
     if request.method == 'POST':
