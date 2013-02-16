@@ -6,7 +6,7 @@ urlpatterns = patterns('',
     # note to self: appnavn i name
     url(r'^/?$', views.index, name='index'),
     # r = regex: ^: start, $: end, 
-    url(r'^(?P<listname>[\wæøå ._0-9-]+)$', views.get_list, name='todo'), 
+    url(r'^(?P<list_name>[\wæøå ._0-9-]+)$', views.get_list, name='todo'),
     url('add/$', views.add, name='ajax-add'),
     url('rename/$', views.rename, name='ajax-rename'),
     url('delete/$', views.delete, name='ajax-delete'),
