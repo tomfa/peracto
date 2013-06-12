@@ -8,7 +8,10 @@ from peracto.decorators import peracto_login_required
 
 # When people go to www.webpage.com | POST: none
 def index(request):
-    random = RandomName.objects.order_by('?')[0]
+    try:
+        random = RandomName.objects.order_by('?')[0]
+    except:
+        random = "Peracto"
     context = {
         'title': random, # the list
     }
