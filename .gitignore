@@ -1,3 +1,5 @@
 *.pyc
 *.AppleDouble/
 *.DS_Store
+*env/
+rbpidb
