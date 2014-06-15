@@ -13,9 +13,9 @@
 
 <body>
     <div id="index">
-        <h1>{{ title.random_name }}</h1>
+        <h1>{% if title.random_name %}{{ title.random_name }}{% else %}Peracto{% endif %}</h1>
         <input type="text" id="searchfield" value="Start typing a name for your todo-list..." maxlength="50"/>
-        <div id="footer"><span id="use">use</span> | <span id="android">android</span> | <span id="about">about</span> </div>
+        <div id="footer"><span id="use">use</span> | <span id="about">about</span> </div>
         <div id="info"></div>
         <div id="messagebox">Only letters and numbers are allowed.</div>
         <div id="history">

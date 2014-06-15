@@ -47,11 +47,6 @@ $(document).ready(function(){
         $('#info').html('<p>Peracto is written with jQuery in a django framework by <a href="http://www.webutvikling.org">tomasalb</a>.</p><p>Peracto is a free-to-use todo-application focused on being simple to use, quick, and usable by keyboard only.</p> ');
         $('#info').fadeIn();
     });
-    $('#android').on('mouseenter', function (event) {
-        $('#info').stop(true, true);
-        $('#info').html('<p>An android version of Peracto is currently in development.</p>');
-        $('#info').fadeIn();
-    });
     $('#use').on('mouseenter', function (event) {
         $('#info').stop(true, true);
         $('#info').html('<p>in the textfield above, write a name for your todo-list. if the name is currently in use, that list will show up. if not, you will be given a blank list.</p><p>a list consists of three columns, where the first and second are topic and subtopic. the last column is the actual goal column.</p></p>you navigate between the lists and items using &lt;W&gt;, &lt;A&gt;, &lt;S&gt;, &lt;D&gt; or your arrow keys.</p> <p>&lt;F2&gt; and &lt;E&gt; edits selected items, while &lt;N&gt; allows you to create new ones.</p><p>&lt;R&gt; removes the selected item.</p>');
