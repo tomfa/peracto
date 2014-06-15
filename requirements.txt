@@ -1,0 +1,16 @@
+PIL==1.1.7
+SOAPpy==0.12.0
+South==0.8.2
+argparse==1.2.1
+chardet==2.0.1
+distribute==0.7.3
+docutils==0.11
+fpconst==0.7.2
+pexpect==2.4
+python-apt==0.8.8.2
+python-debian==0.1.21
+python-debianbts==1.11
+reportbug==6.4.4
+reportlab==2.5
+virtualenv==1.10.1
+wsgiref==0.1.2
